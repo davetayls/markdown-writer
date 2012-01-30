@@ -1,3 +1,6 @@
 [submodule "public/lib/require"]
 	path = public/lib/require
 	url = https://github.com/jrburke/requirejs.git
+[submodule "public/lib/showdown"]
+	path = public/lib/showdown
+	url = https://github.com/coreyti/showdown.git
