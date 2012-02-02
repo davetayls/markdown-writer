@@ -4,3 +4,9 @@
 [submodule "public/lib/showdown"]
 	path = public/lib/showdown
 	url = https://github.com/coreyti/showdown.git
+[submodule "public/lib/backbone"]
+	path = public/lib/backbone
+	url = https://github.com/amdjs/backbone.git
+[submodule "public/lib/underscore"]
+	path = public/lib/underscore
+	url = https://github.com/amdjs/underscore.git
