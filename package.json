@@ -7,4 +7,7 @@
     , "stylus": ">= 0.0.1"
     , "jade": ">= 0.0.1"
   }
+  , "amd": {
+      "baseUrl": "public/lib"
+  }
 }

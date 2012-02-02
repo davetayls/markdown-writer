@@ -12,9 +12,11 @@ define.amd.jQuery = true;
 require(
 { 
     paths: { 
-        jquery: '../lib/jquery.min',
-        text: '../lib/text',
-        showdown: '../lib/showdown/src/showdown'
+        jquery     : '../lib/jquery.min',
+        text       : '../lib/text',
+        showdown   : '../lib/showdown/src/showdown',
+        backbone   : '../lib/backbone/backbone',
+        underscore : '../lib/underscore/underscore'
     } 
 }, 
 [ 
