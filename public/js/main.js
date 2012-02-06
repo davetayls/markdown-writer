@@ -44,12 +44,12 @@ function($, _, Backbone) {
         'routers/main',
         'collections/article',
         'views/article',
-        'views/fullarticle'
+        'views/editarticle'
     ], 
-    function(MainRouter, ArticleCollection, ArticleView, FullArticleView){
+    function(MainRouter, ArticleCollection, ArticleView, EditArticleView){
 
         var articles = new ArticleCollection(),
-            fullArticle
+            editArticle
         ;
 
         var AppView = Backbone.View.extend({
@@ -81,10 +81,10 @@ function($, _, Backbone) {
                 articles.each(this.addOne);
             },
             showArticle: function(article) {
-                if (fullArticle) {
-                    fullArticle.remove();
+                if (editArticle) {
+                    editArticle.remove();
                 }
-                fullArticle = new FullArticleView({ 
+                editArticle = new EditArticleView({ 
                     model: article
                 }).render().$el.appendTo('#showdown');
             },
