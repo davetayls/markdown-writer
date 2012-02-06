@@ -24,7 +24,8 @@ require(
     'jquery',
     'underscore',
     'backbone',
-    'showdown'
+    'showdown',
+    'bootstrap'
 ], 
 function($, _, Backbone) {
     'use strict';
@@ -35,6 +36,8 @@ function($, _, Backbone) {
 
         converter = new Showdown.converter()
     ;
+
+    $('.dropdown-toggle').dropdown();
 
     require(
     [
