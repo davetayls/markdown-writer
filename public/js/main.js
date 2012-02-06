@@ -49,11 +49,19 @@ function($, _, Backbone) {
     function(MainRouter, ArticleCollection, ArticleView, EditArticleView){
 
         var articles = new ArticleCollection(),
-            editArticle
+            editArticle,
+            articleTemplate = [
+                '---',
+                'layout: post',
+                'author: davetayls',
+                'title: {{title}}',
+                'categories:',
+                '---'
+            ].join('\n')
         ;
 
         var AppView = Backbone.View.extend({
-            el: $('#main'),
+            el: $('#container'),
             events: {
                 'keypress #title': 'createOnEnter'
             },
@@ -67,8 +75,8 @@ function($, _, Backbone) {
                 articles.fetch();
                 if (articles.length === 0) {
                     articles.create({
-                        title: 'dummy title',
-                        body:  'dummy body'
+                        title: 'First Article',
+                        body:  articleTemplate
                     });
                 }
                 articles.at(0).show();
@@ -94,7 +102,8 @@ function($, _, Backbone) {
                     return;
                 }
                 articles.create({
-                    title: text
+                    title: text,
+                    body: articleTemplate.replace('{{title}}', text)
                 });
                 this.input.val('');
                 e.preventDefault();
