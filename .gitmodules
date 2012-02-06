@@ -10,3 +10,6 @@
 [submodule "public/lib/underscore"]
 	path = public/lib/underscore
 	url = https://github.com/amdjs/underscore.git
+[submodule "public/lib/js-yaml"]
+	path = public/lib/js-yaml
+	url = https://github.com/nodeca/js-yaml.git
