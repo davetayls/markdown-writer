@@ -1,11 +1,12 @@
-/*global define, require, Showdown */
+/*global define, require, Showdown, jsyaml */
 define(
 [
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'articlebody'
 ],
-function($, _, Backbone){
+function($, _, Backbone, articlebody){
     'use strict';
 
     return Backbone.View.extend({
@@ -29,12 +30,13 @@ function($, _, Backbone){
             return this;
         },
         preview: function() {
-            var bodyVal = this.$textarea.val();
+            var bodyVal = articlebody.getYaml(this.$textarea.val());
             this.$body.html(
-                this.converter.makeHtml(bodyVal)
+                this.converter.makeHtml(bodyVal.article)
             );
             this.model.save({
-                body: bodyVal,
+                title: bodyVal.yaml && bodyVal.yaml.title ? bodyVal.yaml.title : this.model.get('title'),
+                body: bodyVal.all,
                 silent: true
             });
         }

@@ -18,6 +18,7 @@ require(
         underscore : '../lib/underscore/underscore',
         backbone   : '../lib/backbone/backbone',
         backboneLocalstorage   : '../lib/backbone/examples/backbone-localstorage',
+        'js-yaml'  : '../lib/js-yaml/js-yaml'
     } 
 }, 
 [ 
