@@ -1,0 +1,13 @@
+CACHE MANIFEST
+#08.17
+
+CACHE:
+/
+/prod/css/bootstrap.css
+/prod/css/style.css
+
+/prod/lib/require/require.js
+/prod/js/main.js
+
+NETWORK:
+*
