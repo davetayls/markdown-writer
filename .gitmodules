@@ -13,3 +13,6 @@
 [submodule "public/lib/js-yaml"]
 	path = public/lib/js-yaml
 	url = https://github.com/nodeca/js-yaml.git
+[submodule "manifest"]
+	path = manifest
+	url = git://gist.github.com/1307428.git
