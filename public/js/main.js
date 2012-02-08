@@ -17,7 +17,7 @@ require(
         showdown   : '../lib/showdown/src/showdown',
         underscore : '../lib/underscore/underscore',
         backbone   : '../lib/backbone/backbone',
-        backboneLocalstorage   : '../lib/backbone/examples/backbone-localstorage',
+        backboneLocalstorage   : 'backbone-localstorage',
         'js-yaml'  : '../lib/js-yaml/js-yaml'
     } 
 }, 
