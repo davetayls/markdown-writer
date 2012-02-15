@@ -2,7 +2,7 @@
     //The top level directory that contains your app.
     appDir: "public",
     dir: "public/prod",
-    fileExclusionRegExp: /^\.|^test|^node|^ci|^reports|^app\.build|^build/,
+    fileExclusionRegExp: /^\.|^test|^node|^ci|^reports|^app\.build|^build|^prod|^offline.manifest/,
     findNestedDependencies: true,
 
     //By default, all modules are located relative to this path. If baseUrl
@@ -15,7 +15,7 @@
         showdown   : '../lib/showdown/src/showdown',
         underscore : '../lib/underscore/underscore',
         backbone   : '../lib/backbone/backbone',
-        backboneLocalstorage   : '../lib/backbone/examples/backbone-localstorage',
+        backboneLocalstorage   : 'backbone-localstorage',
         'js-yaml'  : '../lib/js-yaml/js-yaml'
     },
     uglify: {
