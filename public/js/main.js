@@ -10,8 +10,8 @@
 /*global define,require,Showdown */
 define.amd.jQuery = true;
 require(
-{ 
-    paths: { 
+{
+    paths: {
         jquery     : '../lib/jquery.min',
         text       : '../lib/text',
         showdown   : '../lib/showdown/src/showdown',
@@ -19,15 +19,14 @@ require(
         backbone   : '../lib/backbone/backbone',
         backboneLocalstorage   : 'backbone-localstorage',
         'js-yaml'  : '../lib/js-yaml/js-yaml'
-    } 
-}, 
-[ 
+    }
+},
+[
     'jquery',
     'underscore',
     'backbone',
-    'showdown',
-    'bootstrap'
-], 
+    'showdown'
+],
 function($, _, Backbone) {
     'use strict';
 
@@ -46,7 +45,7 @@ function($, _, Backbone) {
         'collections/article',
         'views/article',
         'views/editarticle'
-    ], 
+    ],
     function(MainRouter, ArticleCollection, ArticleView, EditArticleView){
 
         var articles = new ArticleCollection(),
@@ -93,7 +92,7 @@ function($, _, Backbone) {
                 if (editArticle) {
                     editArticle.remove();
                 }
-                editArticle = new EditArticleView({ 
+                editArticle = new EditArticleView({
                     model: article
                 }).render().$el.appendTo('#showdown');
             },

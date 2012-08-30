@@ -7,6 +7,7 @@
     , "stylus": ">= 0.0.1"
     , "jade": ">= 0.0.1"
     , "requirejs": "1.x.x"
+    , "grunt-contrib": "0.x.x"
   }
   , "amd": {
       "baseUrl": "public/lib"
