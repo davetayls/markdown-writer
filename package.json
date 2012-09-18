@@ -6,7 +6,7 @@
       "express": "2.5.0"
     , "stylus": ">= 0.0.1"
     , "jade": ">= 0.0.1"
-    , "requirejs": "1.x.x"
+    , "requirejs": "2.x.x"
     , "grunt-contrib": "0.x.x"
   }
   , "amd": {

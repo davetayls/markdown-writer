@@ -1,9 +1,9 @@
 !!!5
-html(manifest='offline.manifest')
+html
   head
     title= title
-    link(rel='stylesheet', href='/prod/css/bootstrap.css')
-    link(rel='stylesheet', href='/prod/css/style.css')
+    link(rel='stylesheet', href='/css/core.css')
   body
     != body
-    script(data-main='/prod/js/main.js', src='/prod/lib/require/require.js')
+    script(src='/lib/jquery.min.js')
+    script(data-main='/js/main.js', src='/lib/require/require.js')

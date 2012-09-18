@@ -1,18 +1,19 @@
-/*global define, require, Showdown */
+/*global define, console, require, Showdown */
 define(
 [
-    'jquery',
-    'underscore',
-    'backbone'
+	'jquery',
+	'underscore',
+	'backbone'
 ],
 function($, _, Backbone){
-    'use strict';
+	'use strict';
 
-    return Backbone.Router.extend({
-        routes: {
-            "article/:title": "article"
-        }
-    });
+	return Backbone.Router.extend({
+		routes: {
+			"articles": "articles",
+			"article/:title": "article"
+		}
+	});
 });
 
 

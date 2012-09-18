@@ -1,18 +1,8 @@
-/**
-* Main
-* ====
-* This is the main js initialiser for the page
-* it is triggered by the data-main attribute on the
-* require script tag.
-* <script data-main="/js/main" src="/lib/require.js"></script>
-* for more information see <http://requirejs.org>
-*/
 /*global define,require,Showdown */
 define.amd.jQuery = true;
-require(
-{
+require.config({
     paths: {
-        jquery     : '../lib/jquery.min',
+        jquery     : '../lib/jquery-amd',
         text       : '../lib/text',
         showdown   : '../lib/showdown/src/showdown',
         underscore : '../lib/underscore/underscore',
@@ -20,11 +10,14 @@ require(
         backboneLocalstorage   : 'backbone-localstorage',
         'js-yaml'  : '../lib/js-yaml/js-yaml'
     }
-},
+});
+
+require(
 [
     'jquery',
     'underscore',
     'backbone',
+    'bootstrap',
     'showdown'
 ],
 function($, _, Backbone) {
@@ -39,84 +32,10 @@ function($, _, Backbone) {
 
     $('.dropdown-toggle').dropdown();
 
-    require(
-    [
-        'routers/main',
-        'collections/article',
-        'views/article',
-        'views/editarticle'
-    ],
-    function(MainRouter, ArticleCollection, ArticleView, EditArticleView){
+    require(['views/app'], function(AppView){
 
-        var articles = new ArticleCollection(),
-            editArticle,
-            articleTemplate = [
-                '---',
-                'layout: post',
-                'author: davetayls',
-                'title: {{title}}',
-                'categories:',
-                '---'
-            ].join('\n')
-        ;
-
-        var AppView = Backbone.View.extend({
-            el: $('#container'),
-            events: {
-                'keypress #title': 'createOnEnter'
-            },
-            initialize: function(){
-                this.input = $('#title');
-
-                articles.bind('add', this.addOne, this);
-                articles.bind('reset', this.addAll, this);
-                articles.bind('show', this.showArticle, this);
-
-                articles.fetch();
-                if (articles.length === 0) {
-                    articles.create({
-                        title: 'First Article',
-                        body:  articleTemplate
-                    });
-                }
-                articles.at(0).show();
-            },
-            addOne: function(article) {
-                var view = new ArticleView({ model: article });
-                $('#articles').append(view.render().el);
-            },
-            addAll: function() {
-                articles.each(this.addOne);
-            },
-            showArticle: function(article) {
-                if (editArticle) {
-                    editArticle.remove();
-                }
-                editArticle = new EditArticleView({
-                    model: article
-                }).render().$el.appendTo('#showdown');
-            },
-            createOnEnter: function(e) {
-                var text = this.input.val();
-                if (!text || e.keyCode !== 13) {
-                    return;
-                }
-                articles.create({
-                    title: text,
-                    body: articleTemplate.replace('{{title}}', text)
-                });
-                this.input.val('');
-                e.preventDefault();
-            }
-        });
-
-        var app = new AppView(),
-            mainRoute = new MainRouter()
-        ;
+        var app = new AppView();
         Backbone.history.start();
-
-        mainRoute.on('route:article', function(title){
-        });
 
     });
 
