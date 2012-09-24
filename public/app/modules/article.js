@@ -1,3 +1,4 @@
+/*global define,Store */
 define([
   // Application.
   "app",

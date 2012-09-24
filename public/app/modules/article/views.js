@@ -11,12 +11,18 @@ function(app, Backbone) {
 
   Views.List = Backbone.View.extend({
     tagName: 'ul',
-    // Insert all subViews prior to rendering the View.
-    beforeRender: function() {
-      // Iterate over the passed collection and create a view for each item.
-      this.collection.each(function(model) {
-        this.insertView(new Views.ListItem(model));
-      }, this);
+
+    initialize: function(){
+      this.collection.bind('add', this.addOne, this);
+      this.collection.bind('reset', this.addAll, this);
+      // this.collection.bind('show', this.showArticle, this);
+    },
+    addOne: function(article) {
+      var view = new Views.ListItem({ model: article });
+      this.$el.append(view.render().el);
+    },
+    addAll: function() {
+      this.collection.each(this.addOne);
     }
   });
 

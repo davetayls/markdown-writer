@@ -82,7 +82,19 @@ module.exports = function(grunt) {
     },
 
     less: {
-      compile: {
+      development: {
+        options: {
+          paths: ["less", "public/lib"]
+        },
+        files: {
+          "public/css/core.css": "less/core.less"
+        }
+      },
+      production: {
+        options: {
+          paths: ["less", "public/lib"],
+          yuicompress: true
+        },
         files: {
           "public/css/core.css": "less/core.less"
         }
@@ -211,19 +223,21 @@ module.exports = function(grunt) {
     // etc.)
     watch: {
       stylus: {
-        files: ["grunt.js", "public/assets/css/**/*.styl"],
-        tasks: "stylus:dev"
+        files: ["grunt.js", "less/**/*.less"],
+        tasks: "less:development"
       }
     }
 
   });
+
+  grunt.loadNpmTasks('grunt-contrib');
 
   // The debug task will remove all contents inside the dist/ folder, lint
   // all your code, precompile all the underscore templates into
   // dist/debug/templates.js, compile all the application code into
   // dist/debug/require.js, and then concatenate the require/define shim
   // almond.js and dist/debug/templates.js into the require.js file.
-  grunt.registerTask("debug", "clean lint jst requirejs concat stylus:compile");
+  grunt.registerTask("debug", "clean lint jst requirejs concat less");
 
   // The release task will run the debug tasks and then minify the
   // dist/debug/require.js file and CSS files.

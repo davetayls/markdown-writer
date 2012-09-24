@@ -27,7 +27,7 @@ require.config({
       exports: "Backbone"
     },
     "plugins/backbone.layoutmanager": ["backbone"],
-    "plugins/backbone.localStorage": ["backbone"],
+    "plugins/backbone.localStorage": ["backbone"]
   }
 
 });
