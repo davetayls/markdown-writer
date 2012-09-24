@@ -9,7 +9,4 @@
     , "requirejs": "2.x.x"
     , "grunt-contrib": "0.x.x"
   }
-  , "amd": {
-      "baseUrl": "public/lib"
-  }
 }
