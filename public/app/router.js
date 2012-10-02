@@ -12,6 +12,17 @@ define([
 function(Backbone, app, Article) {
 
 	var articlesCollection = window.articlesCollection = new Article.Collection(),
+		currentArticle,
+
+		// templates
+		articleTemplate = [
+			'---',
+			'layout: post',
+			'author: davetayls',
+			'title: {{title}}',
+			'categories:',
+			'---'
+		].join('\n'),
 
 		// ui elements
 		$articlesModal = $('#articlesModal'),
@@ -32,14 +43,33 @@ function(Backbone, app, Article) {
 		},
 
 		index: function() {
+			articlesCollection.fetch();
+			window.a = currentArticle = articlesCollection.at(0);
+			currentArticle.on('change', function(){ console.log('hhhh'); });
+
+			if (articlesCollection.length === 0) {
+				articlesCollection.create({
+					title: 'First Article',
+					body:  articleTemplate
+				});
+			}
+
 			$articlesModal.modal('hide');
+			app.useLayout("main")
+			.setViews({
+				'#preview': new Article.Views.Preview({
+					model: currentArticle
+				}),
+				'#showdown': new Article.Views.Editor({
+					model: currentArticle
+				})
+			}).render();
 		},
 		articles: function(){
 			$articlesModal.modal();
 		}
 	});
 
-	articlesCollection.fetch();
 
 	return Router;
 

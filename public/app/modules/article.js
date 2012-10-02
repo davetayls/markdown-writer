@@ -22,8 +22,6 @@ function(app, Backbone, Views) {
       title: "",
       body: ""
     },
-    initialize: function(){
-    },
     show: function() {
       this.trigger('show', this);
     }

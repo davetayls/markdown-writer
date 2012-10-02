@@ -14,7 +14,10 @@ require.config({
     jquery: "../assets/js/libs/jquery",
     lodash: "../assets/js/libs/lodash",
     backbone: "../assets/js/libs/backbone",
-    bootstrap: "../lib/bootstrap"
+    bootstrap: "../lib/bootstrap",
+    showdown: '../lib/showdown/src/showdown',
+    yaml: '../lib/js-yaml/js-yaml',
+    articlebody: '../js/articlebody'
   },
 
   shim: {

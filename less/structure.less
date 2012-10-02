@@ -20,16 +20,18 @@ body {
     max-width: none;
 }
 
-#main {
+#main,
+#layout {
     height: 100%;
     width: 100%;
 }
+
 
 #showdown {
     float: left;
     margin-left: 1%;
     width: 48%;
-    height: 95%;
+    height: 100%;
 
     >div {
         height: 100%;
@@ -39,6 +41,11 @@ body {
         font-family: monospace;
         width: 100%;
         height: 100%;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+             -o-box-sizing: border-box;
+                box-sizing: border-box;
     }
 }
 
@@ -46,9 +53,9 @@ body {
     border: solid 1px #ccc;
     float: right;
     margin-right: 1%;
-    padding: 4px;
+    padding: 0 4px;
     width: 48%;
-    height: 95%;
+    height: 100%;
     .border-radius(4px);
 
     iframe {

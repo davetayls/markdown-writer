@@ -2,19 +2,19 @@ define([
   "app",
 
   // Libs
-  "backbone"
+  "backbone",
+  "articlebody"
 ],
 
-function(app, Backbone) {
+function(app, Backbone, articlebody) {
 
   var Views = {};
 
   Views.List = Backbone.View.extend({
     tagName: 'ul',
-
     initialize: function(){
-      this.collection.bind('add', this.addOne, this);
-      this.collection.bind('reset', this.addAll, this);
+      // this.collection.bind('add', this.addOne, this);
+      // this.collection.bind('reset', this.addAll, this);
       // this.collection.bind('show', this.showArticle, this);
     },
     addOne: function(article) {
@@ -42,6 +42,31 @@ function(app, Backbone) {
     show: function(e) {
       this.model.show();
       e.preventDefault();
+    }
+  });
+
+  Views.Editor = Backbone.View.extend({
+    tagName: 'textarea',
+    events: {
+      'keyup': 'update'
+    },
+    initialize: function(){
+      this.$el.val(this.model.get('body'));
+    },
+    update: function(){
+      this.model.set('body', this.$el.val());
+    }
+  });
+
+  Views.Preview = Backbone.View.extend({
+    tagName: 'iframe',
+    initialize: function(){
+      this.model.on('change', this.renderChange, this);
+    },
+    renderChange: function(){
+      this.$body = this.$body || this.$el.contents().find('body');
+      var bodyVal = articlebody.getYaml(this.model.get('body'));
+      this.$body.html(articlebody.makeHtml(bodyVal.article));
     }
   });
 

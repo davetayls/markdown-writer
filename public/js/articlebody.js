@@ -1,7 +1,9 @@
 /*jshint node:true */
-/*global define, require, jsyaml */
-define(['js-yaml'], function(){
+/*global define, require, jsyaml, Showdown */
+define(['yaml', 'showdown'], function(){
     'use strict';
+
+    var converter = new Showdown.converter();
 
     return {
         getYaml: function(body) {
@@ -14,6 +16,9 @@ define(['js-yaml'], function(){
                 yaml: jsyaml.load(yaml),
                 article: article
             };
+        },
+        makeHtml: function(markdown){
+            return converter.makeHtml(markdown);
         }
     };
 });
