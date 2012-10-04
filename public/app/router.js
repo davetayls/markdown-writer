@@ -66,7 +66,8 @@ function(Backbone, app, Article) {
 			}).render();
 		},
 		articles: function(){
-			$articlesModal.modal();
+			app.useLayout("articles")
+			.render();
 		}
 	});
 

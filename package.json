@@ -1,12 +1,13 @@
 {
-    "name": "markdown-writer"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.0"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.0.1"
-    , "requirejs": "2.x.x"
-    , "grunt-contrib": "0.x.x"
-  }
+    "name": "markdown-writer",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "2.5.0",
+        "stylus": ">= 0.0.1",
+        "jade": ">= 0.0.1",
+        "requirejs": "2.x.x",
+        "grunt-contrib": "0.x.x",
+        "oauth": "0.x.x"
+    }
 }
