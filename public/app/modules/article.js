@@ -7,11 +7,12 @@ define([
   // Views
   "modules/article/views",
 
-  "plugins/backbone.localStorage"
+  "plugins/backbone.localStorage",
+  "articlebody"
 ],
 
 // Map dependencies from above array.
-function(app, Backbone, Views) {
+function(app, Backbone, Views, articlebody) {
 
   // Create a new module.
   var Article = app.module();

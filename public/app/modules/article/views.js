@@ -54,19 +54,29 @@ function(app, Backbone, articlebody) {
       this.$el.val(this.model.get('body'));
     },
     update: function(){
+      var bodyVal = articlebody.getYaml(this.$el.val());
+      this.model.set('title', bodyVal.yaml.title);
       this.model.set('body', this.$el.val());
+      this.model.save();
     }
   });
 
   Views.Preview = Backbone.View.extend({
     tagName: 'iframe',
     initialize: function(){
-      this.model.on('change', this.renderChange, this);
+      this.model.on('change', this.updatePreview, this);
+      this.converter = new Showdown.converter();
     },
-    renderChange: function(){
-      this.$body = this.$body || this.$el.contents().find('body');
+    afterRender: function(){
+      this.updatePreview();
+    },
+    updatePreview: function(){
+      var $body = this.$el.contents().find('body');
+
       var bodyVal = articlebody.getYaml(this.model.get('body'));
-      this.$body.html(articlebody.makeHtml(bodyVal.article));
+      $body.html(
+        this.converter.makeHtml(bodyVal.article)
+      );
     }
   });
 
