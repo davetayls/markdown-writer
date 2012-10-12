@@ -17,31 +17,28 @@ function(app, Backbone, articlebody) {
       // this.collection.bind('reset', this.addAll, this);
       // this.collection.bind('show', this.showArticle, this);
     },
+    beforeRender: function(){
+      this.collection.each(function(article){
+        this.insertView(new Views.ListItem({
+          model: article
+        }));
+      }, this);
+    },
     addOne: function(article) {
       var view = new Views.ListItem({ model: article });
-      this.$el.append(view.render().el);
+      view.render();
+      this.$el.append(view.el);
     },
     addAll: function() {
-      this.collection.each(this.addOne);
+      this.collection.each(this.addOne, this);
     }
   });
 
   Views.ListItem = Backbone.View.extend({
     tagName: 'li',
     template: 'article/list',
-    events: {
-      'click': 'show'
-    },
-    initialize: function(){
-      this.model.bind('change', this.render, this);
-    },
-    render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
-      return this;
-    },
-    show: function(e) {
-      this.model.show();
-      e.preventDefault();
+    serialize: function() {
+      return this.model.toJSON();
     }
   });
 
@@ -64,6 +61,9 @@ function(app, Backbone, articlebody) {
   Views.Preview = Backbone.View.extend({
     tagName: 'iframe',
     initialize: function(){
+      if (!this.model){
+        return;
+      }
       this.model.on('change', this.updatePreview, this);
       this.converter = new Showdown.converter();
     },

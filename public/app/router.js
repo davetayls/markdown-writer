@@ -11,7 +11,7 @@ define([
 
 function(Backbone, app, Article) {
 
-	var articlesCollection = window.articlesCollection = new Article.Collection(),
+	var articlesCollection = new Article.Collection(),
 		currentArticle,
 
 		// templates
@@ -39,20 +39,20 @@ function(Backbone, app, Article) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			"": "index",
-			"articles": "articles"
+			"articles": "articles",
+			"article/:id": "index"
 		},
 
-		index: function() {
+		index: function(id) {
 			articlesCollection.fetch();
-			window.a = currentArticle = articlesCollection.at(0);
-			currentArticle.on('change', function(){ console.log('hhhh'); });
-
 			if (articlesCollection.length === 0) {
 				articlesCollection.create({
 					title: 'First Article',
 					body:  articleTemplate
 				});
 			}
+
+			currentArticle = articlesCollection.getArticle(id);
 
 			$articlesModal.modal('hide');
 			app.useLayout("main")
@@ -67,10 +67,15 @@ function(Backbone, app, Article) {
 		},
 		articles: function(){
 			app.useLayout("articles")
+			.setViews({
+				'#articles-list': new Article.Views.List({
+					collection: articlesCollection
+				})
+			})
 			.render();
+			articlesCollection.fetch();
 		}
 	});
-
 
 	return Router;
 

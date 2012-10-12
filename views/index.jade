@@ -6,17 +6,16 @@
         ul.nav
           li
             a(href='#articles') Articles
-          li
-            a(href='https://github.com/login/oauth/authorize?client_id=2445bff35beb187e2fe3&scope=gist') Authorise
+          if user
+            li
+              a.githubUser(href=user.html_url, target='_blank')
+                img(src=user.avatar_url)
+                span= user.login
+          else
+            li
+              a(href='/auth/github', data-bypass='') Log In
+
+
 
   #main
 
-#articlesModal.modal.hide.fade(tabindex='-1', role='dialog', aria-labelledby='Articles', aria-hidden='true')
-    .modal-header
-      button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-      h3#myModalLabel Articles
-    .modal-body
-      #articles
-    .modal-footer
-      button.btn(data-dismiss='modal', aria-hidden='true') Close
-      button.btn.btn-primary Save changes

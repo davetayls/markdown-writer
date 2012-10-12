@@ -8,6 +8,6 @@
         "jade": ">= 0.0.1",
         "requirejs": "2.x.x",
         "grunt-contrib": "0.x.x",
-        "oauth": "0.x.x"
+        "everyauth": "0.x.x"
     }
 }

@@ -31,7 +31,14 @@ function(app, Backbone, Views, articlebody) {
   // Default collection.
   Article.Collection = Backbone.Collection.extend({
     model: Article.Model,
-    localStorage: new Store("articles")
+    localStorage: new Store("articles"),
+    getArticle: function(id){
+      var article = this.get(id);
+      if (!article && this.length){
+        article = this.at(0);
+      }
+      return article;
+    }
   });
 
   // Default Views
