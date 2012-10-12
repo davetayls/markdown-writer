@@ -12,6 +12,7 @@ function(app, Backbone, articlebody) {
 
   Views.List = Backbone.View.extend({
     tagName: 'ul',
+    className: 'nav nav-pills nav-stacked',
     initialize: function(){
       // this.collection.bind('add', this.addOne, this);
       // this.collection.bind('reset', this.addAll, this);
@@ -39,6 +40,17 @@ function(app, Backbone, articlebody) {
     template: 'article/list',
     serialize: function() {
       return this.model.toJSON();
+    }
+  });
+
+  Views.NewArticle = Backbone.View.extend({
+    tagName: 'div',
+    template: 'article/newArticle',
+    events: {
+      "form submit": "create"
+    },
+    create: function(e){
+      console.log(arguments);
     }
   });
 

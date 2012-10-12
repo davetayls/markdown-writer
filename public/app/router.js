@@ -70,6 +70,9 @@ function(Backbone, app, Article) {
 			.setViews({
 				'#articles-list': new Article.Views.List({
 					collection: articlesCollection
+				}),
+				'#articles-new': new Article.Views.NewArticle({
+					collection: articlesCollection
 				})
 			})
 			.render();

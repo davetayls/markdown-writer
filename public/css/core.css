@@ -44,8 +44,7 @@ body {
 .dropdown-menu {
   max-width: none;
 }
-#main,
-#layout {
+#main {
   height: 100%;
   width: 100%;
 }
@@ -83,6 +82,13 @@ body {
   border: none;
   width: 100%;
   height: 100%;
+}
+/*
+    => main
+--------------------------------------------------*/
+.main {
+  height: 100%;
+  width: 100%;
 }
 /*
     => articles
