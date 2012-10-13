@@ -12,9 +12,9 @@ function(app, Backbone, articlebody) {
 
   Views.List = Backbone.View.extend({
     tagName: 'ul',
-    className: 'nav nav-pills nav-stacked',
+    className: '',
     initialize: function(){
-      // this.collection.bind('add', this.addOne, this);
+      this.collection.bind('add', this.addOne, this);
       // this.collection.bind('reset', this.addAll, this);
       // this.collection.bind('show', this.showArticle, this);
     },
@@ -26,9 +26,9 @@ function(app, Backbone, articlebody) {
       }, this);
     },
     addOne: function(article) {
-      var view = new Views.ListItem({ model: article });
-      view.render();
-      this.$el.append(view.el);
+      this.insertView(new Views.ListItem({
+        model: article
+      }));
     },
     addAll: function() {
       this.collection.each(this.addOne, this);
@@ -38,8 +38,14 @@ function(app, Backbone, articlebody) {
   Views.ListItem = Backbone.View.extend({
     tagName: 'li',
     template: 'article/list',
+    events: {
+      'click [name="delete"]': 'delete'
+    },
     serialize: function() {
       return this.model.toJSON();
+    },
+    delete: function(){
+      this.model.destroy();
     }
   });
 
@@ -47,10 +53,13 @@ function(app, Backbone, articlebody) {
     tagName: 'div',
     template: 'article/newArticle',
     events: {
-      "form submit": "create"
+      "submit form": "create"
     },
     create: function(e){
-      console.log(arguments);
+      this.collection.create({
+        title: this.$el.find('[name="title"]').val()
+      });
+      e.preventDefault();
     }
   });
 

@@ -14,16 +14,6 @@ function(Backbone, app, Article) {
 	var articlesCollection = new Article.Collection(),
 		currentArticle,
 
-		// templates
-		articleTemplate = [
-			'---',
-			'layout: post',
-			'author: davetayls',
-			'title: {{title}}',
-			'categories:',
-			'---'
-		].join('\n'),
-
 		// ui elements
 		$articlesModal = $('#articlesModal'),
 		$articles      = $('#articles'),
@@ -47,8 +37,7 @@ function(Backbone, app, Article) {
 			articlesCollection.fetch();
 			if (articlesCollection.length === 0) {
 				articlesCollection.create({
-					title: 'First Article',
-					body:  articleTemplate
+					title: 'First Article'
 				});
 			}
 

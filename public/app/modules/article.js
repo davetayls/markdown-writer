@@ -1,4 +1,4 @@
-/*global define,Store */
+/*global define,Store,_ */
 define([
   // Application.
   "app",
@@ -14,6 +14,16 @@ define([
 // Map dependencies from above array.
 function(app, Backbone, Views, articlebody) {
 
+  // templates
+  var articleTemplate = [
+    '---',
+    'layout: post',
+    'author: davetayls',
+    'title: <%= title %>',
+    'categories:',
+    '---\n\n'
+  ].join('\n');
+
   // Create a new module.
   var Article = app.module();
 
@@ -22,6 +32,11 @@ function(app, Backbone, Views, articlebody) {
     defaults: {
       title: "",
       body: ""
+    },
+    initialize: function(){
+      this.set('body', this.get('body') || _.template(articleTemplate, {
+        title: this.get('title')
+      }));
     },
     show: function() {
       this.trigger('show', this);
