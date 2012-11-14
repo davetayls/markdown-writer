@@ -13,10 +13,9 @@ function(app, Backbone, articlebody) {
   Views.List = Backbone.View.extend({
     tagName: 'ul',
     className: '',
+    keep: true,
     initialize: function(){
-      this.collection.bind('add', this.addOne, this);
-      // this.collection.bind('reset', this.addAll, this);
-      // this.collection.bind('show', this.showArticle, this);
+      this.collection.bind('add', this.render, this);
     },
     beforeRender: function(){
       this.collection.each(function(article){
@@ -24,14 +23,6 @@ function(app, Backbone, articlebody) {
           model: article
         }));
       }, this);
-    },
-    addOne: function(article) {
-      this.insertView(new Views.ListItem({
-        model: article
-      }));
-    },
-    addAll: function() {
-      this.collection.each(this.addOne, this);
     }
   });
 
@@ -40,6 +31,9 @@ function(app, Backbone, articlebody) {
     template: 'article/list',
     events: {
       'click [name="delete"]': 'delete'
+    },
+    initialize: function(){
+      this.model.on('change', this.render, this);
     },
     serialize: function() {
       return this.model.toJSON();

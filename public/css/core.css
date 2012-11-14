@@ -112,3 +112,25 @@ body {
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
+.articles-list ul {
+  margin: 0;
+  padding: 0;
+}
+.articles-list li {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+  display: inline-block;
+}
+.articles-list li a {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: solid 1px #ccc;
+  display: inline-block;
+  padding: 2px 16px;
+}
+.articles-list li a:hover {
+  background-color: #efefef;
+}
